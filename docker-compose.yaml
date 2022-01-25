@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  laravel-app:
+    build: .
+    ports:
+      - "3000:80"
+    volumes:
+      - ./:/usr/share/nginx
+    networks:
+      - app-network
+
+  mysql-app:
+    image: mariadb:latest
+    ports:
+      - "3310:3306"
+    #restart: ALWAYS
+    environment:
+      MYSQL_DATABASE: devbarber
+      MYSQL_ROOT_PASSWORD: prf12345
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    networks:
+      - app-network
+    volumes:
+      - ./docker/dbdata:/var/lib/mysql
+
+networks:
+  app-network:
+    driver: bridge

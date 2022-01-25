@@ -1,0 +1,100 @@
+Permissao:
+  - id:id:uniqueIdPermissao
+  - nome:string:uniqueNomePermissao
+  - descricao:string:nullable
+  - ativo:boolean:nullable:defaulte:false
+
+Categoria-usuario:
+  - id:id:uniqueIdCategoriaUsuario
+  - nome:string:uniqueNomeCategoriaUsuario
+  - descricao:string:nullable
+  - ativo:boolean:nullable:defaulte:false
+
+Usuario:
+  - id:id:uniqueIdUsuario
+  - login:string:nullable:uniqueNomeUsuario
+  - senha:string:nullable
+  - ativo:boolean:nullable:defaulte:false
+  - categoriaUsuario_id:categoriaUsuario:nullable
+  - remember_token:string
+  - email_verificado_em:datetime
+
+CategoriaUsuario-Permissao:
+  - id:id:uniqueIdCategoriaUsuario-Permissao
+  - permissao_id:permissao:nullable:ondelete
+  - categoria-usuario_id:categoriaUsuario:nullable:ondelete
+
+Servico:
+	- id:id
+  - nome:string
+  - descricao:string
+	- ativo:boolean
+
+Cliente:
+	- id:id
+	- nome:string
+	- avatar:string:default('default.png')
+	- email:string:unique
+	- senha:string
+  - usuario_id:unsignedBigInteger
+
+Barbeiro:
+	- id:id
+	- nome:string
+	- avatar:string:default('default.png')
+	- email:string:unique
+	- nota:float:default(0)
+	- latitude:string
+	- longitude:string
+  - usuario_id:unsignedBigInteger
+
+/* Tabela de Relaciomento */
+Cliente_Favoritos:
+	- id:id
+	- id_cliente:unsignedBigInteger
+	- id_barbeiro:unsignedBigInteger
+
+Avaliacao:
+	- id:id
+	- id_barbeiro:unsignedInteger
+	- id_cliente:unsignedInteger
+  - nota:float
+	- mensagem:text
+  - data-criacao:timestamp
+
+Compromissos:
+	- id:id
+	- id_cliente:unsignedBigInteger
+	- id_barbeiro:unsignedBigInteger
+  - id_avaliacao:unsignedBigInteger
+	- data:datetime
+  - status:enum:['agendado','ausente','compareceu','justificou']
+
+Foto:
+	- id:id
+	- id_barbeiro:unsignedInteger
+  - nome:string
+	- url:string
+  - data-adicao:timestamp
+
+Barbeiro_Servico:
+  - id:id
+  - id_barbeiro:unsignedInteger
+  - id_servico:unsignedInteger
+  - preco:float
+  - ativo:boolean
+
+Depoimento:
+  - id:id
+  - nome:string
+  - nota:float
+  - mensagem:string
+  - data-criacao:timestamp
+  - id_barbeiro:unsignedInteger
+  - id_cliente:unsignedInteger
+
+Babeiro_disponibilidade:
+  - id:id
+  - id_barbeiro:unsignedInteger
+  - data:date
+  - horas:text

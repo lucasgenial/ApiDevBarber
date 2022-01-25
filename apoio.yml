@@ -1,0 +1,22 @@
+Cliente:
+  - barbeiros favoritos
+  - agendamentos
+
+Barbeiros:
+  - fotos
+  - notas
+  - serviços
+  - depoimentos
+  - disponibilidade
+
+Relacionamentos Cliente:
+  - cliente_favoritos
+  - cliente_compromissos
+
+Relacionamentos Barbeiros:
+  - barbeiros
+  - barbeiros_fotos
+  - barbeiros_avaliacoes
+  - barbeiros_servicos
+  - barbeiros_depoimentos
+  - barbeiros_avaliacao

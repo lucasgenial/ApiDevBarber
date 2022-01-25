@@ -1,0 +1,23 @@
+## Ativa os dockers criados
+docker-compose up -d --build
+
+## Desliga os dockers criados
+docker-compose down
+
+## abre o bash do docker para edição diretamente neles
+docker exec -it apidevbarber-laravel-app-1 bash
+
+docker ps
+docker images
+
+
+##acessa o diretório contendo os arquivos do programa
+cd /usr/share/nginx/
+
+
+chmod -R 777 ./storage ./bootstrap
+
+
+###
+DROP DATABASE `devbarber`;
+CREATE DATABASE `devbarber` /*!40100 COLLATE 'utf8mb4_unicode_ci' */
